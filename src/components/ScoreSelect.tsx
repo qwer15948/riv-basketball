@@ -127,7 +127,7 @@ const ScoreSelect = ({
             onClick={() => handleTurnover()}
             placeholder={undefined}
           >
-            -
+            T
           </Button>
         </ButtonGroup>
       </div>

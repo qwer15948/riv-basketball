@@ -35,8 +35,9 @@ const InputNumber = ({
         </Button>
         <Button
           className={`font-extrabold px-2 py-1 bg-blue-gray-50 text-sm ${
-            value >= 4 ? "bg-red-800 text-white" : "text-black"
-          }`}
+            value === 4 ? "bg-red-800 !text-white" : "text-black"
+          }
+          ${value === 5 ? "bg-black text-white" : "text-black"}`}
           disabled
           placeholder={undefined}
         >
