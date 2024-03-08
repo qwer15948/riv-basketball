@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/riv-basketball/static/css/main.7da0a935.css",
+    "main.js": "/riv-basketball/static/js/main.ac901c0d.js",
+    "index.html": "/riv-basketball/index.html",
+    "main.7da0a935.css.map": "/riv-basketball/static/css/main.7da0a935.css.map",
+    "main.ac901c0d.js.map": "/riv-basketball/static/js/main.ac901c0d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7da0a935.css",
+    "static/js/main.ac901c0d.js"
+  ]
+}
