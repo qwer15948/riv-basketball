@@ -4,17 +4,14 @@ import { useRecoilState } from "recoil";
 import { playerScoresState } from "../atoms/recoilAtoms";
 
 interface InputNumberProps {
-  isDisabled?: boolean;
   handleMyScore: (point: number) => void;
   player: string;
 }
 
-const ScoreSelect = ({
-  isDisabled,
-  handleMyScore,
-  player,
-}: InputNumberProps) => {
+const ScoreSelect = ({ handleMyScore, player }: InputNumberProps) => {
   const [playerScores, setPlayerScores] = useRecoilState(playerScoresState);
+  const playerName = playerScores[player].name;
+
   const { totalShots, successfulShots } = playerScores[player] as {
     totalShots: number[];
     successfulShots: number[];
@@ -98,7 +95,8 @@ const ScoreSelect = ({
           labelProps={{
             className: "hidden",
           }}
-          disabled={isDisabled}
+          disabled
+          value={playerName}
         />
         <ButtonGroup
           size="sm"

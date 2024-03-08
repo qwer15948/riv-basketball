@@ -24,7 +24,7 @@ const MainPage = () => {
           <h3>RIV</h3>
           <Timeout />
         </div>
-        <FoulList />
+        <FoulList isMyTeam={true} />
       </div>
       <div className="py-5">
         <div className="flex justify-between mb-2 items-center">
@@ -39,7 +39,7 @@ const MainPage = () => {
           </div>
           <Timeout />
         </div>
-        <FoulList />
+        <FoulList isMyTeam={false} />
       </div>
       <div className="py-5">
         <Score

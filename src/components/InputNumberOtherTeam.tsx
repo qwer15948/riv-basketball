@@ -1,6 +1,4 @@
 import { Button, ButtonGroup, Input } from "@material-tailwind/react";
-import { useRecoilState } from "recoil";
-import { playerScoresState } from "../atoms/recoilAtoms";
 
 interface InputNumberProps {
   value: number;
@@ -10,26 +8,13 @@ interface InputNumberProps {
   player: string;
 }
 
-const InputNumber = ({
+const InputNumberOtherTeam = ({
   value,
   isDisabled,
   onIncrement,
   onDecrement,
   player,
 }: InputNumberProps) => {
-  const [playerScores, setPlayerScores] = useRecoilState(playerScoresState);
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value: playerName } = event.target;
-    setPlayerScores((prevPlayerScores) => ({
-      ...prevPlayerScores,
-      [name]: {
-        ...prevPlayerScores[name],
-        name: playerName,
-      },
-    }));
-  };
-
   return (
     <div className="flex gap-1">
       <Input
@@ -40,10 +25,7 @@ const InputNumber = ({
         labelProps={{
           className: "hidden",
         }}
-        value={playerScores[player].name}
-        name={player}
         disabled={isDisabled}
-        onChange={handleInputChange}
       />
       <ButtonGroup size="sm" placeholder={undefined} className="h-8 rounded-sm">
         <Button
@@ -75,4 +57,4 @@ const InputNumber = ({
   );
 };
 
-export default InputNumber;
+export default InputNumberOtherTeam;

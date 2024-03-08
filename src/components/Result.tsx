@@ -1,19 +1,19 @@
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { playerScoresState } from "../atoms/recoilAtoms";
 
 interface ResultProps {
-  isDisabled?: boolean;
   player: string;
 }
 
-const Result = ({ isDisabled, player }: ResultProps) => {
-  const playerScores = useRecoilValue(playerScoresState);
+const Result = ({ player }: ResultProps) => {
+  const [playerScores] = useRecoilState(playerScoresState);
+  const playerName = playerScores[player].name;
   const { totalShots, successfulShots, rebounds, turnovers } =
     playerScores[player];
 
   return (
     <div className="w-[180px] font-bold text-sm">
-      <h6 className="text-gray-400 text-xs">{player}</h6>
+      <h6 className="text-gray-400 text-xs">{playerName}</h6>
       <div className="flex justify-between">
         <p className="font-normal">자유투:</p>
         <p>

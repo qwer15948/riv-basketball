@@ -1,11 +1,14 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import InputNumber from "./InputNumber";
 import FoulCheck from "./FoulCheck";
 import { Switch } from "@material-tailwind/react";
+import InputNumberOtherTeam from "./InputNumberOtherTeam";
 
-const FoulList = (props: {}) => {
+const FoulList = (props: { isMyTeam: boolean }) => {
   const [fouls, setFouls] = useState<number[]>([...Array(12)].map(() => 0));
   const [disabled, setDisabled] = useState<boolean>(false);
+
+  const players = Array.from({ length: 12 }, (_, i) => `player${i + 1}`);
 
   const handleIncrement = (index: number) => {
     const updatedFouls = [...fouls];
@@ -54,17 +57,31 @@ const FoulList = (props: {}) => {
         </div>
       </div>
       <div className="grid grid-cols-2 gap-1 justify-items-center">
-        {[...Array(12)].map((_, i) => {
-          return (
-            <InputNumber
-              key={i}
-              value={fouls[i]}
-              isDisabled={!disabled}
-              onIncrement={() => handleIncrement(i)}
-              onDecrement={() => handleDecrement(i)}
-            />
-          );
-        })}
+        {props.isMyTeam
+          ? players.map((player, i) => {
+              return (
+                <InputNumber
+                  key={i}
+                  value={fouls[i]}
+                  isDisabled={!disabled}
+                  onIncrement={() => handleIncrement(i)}
+                  onDecrement={() => handleDecrement(i)}
+                  player={player}
+                />
+              );
+            })
+          : players.map((player, i) => {
+              return (
+                <InputNumberOtherTeam
+                  key={i}
+                  value={fouls[i]}
+                  isDisabled={!disabled}
+                  onIncrement={() => handleIncrement(i)}
+                  onDecrement={() => handleDecrement(i)}
+                  player={player}
+                />
+              );
+            })}
       </div>
     </div>
   );
