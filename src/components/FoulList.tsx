@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import InputNumber from "./InputNumber";
 import FoulCheck from "./FoulCheck";
-import { Switch } from "@material-tailwind/react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverHandler,
+  Switch,
+} from "@material-tailwind/react";
 import InputNumberOtherTeam from "./InputNumberOtherTeam";
 
 const FoulList = (props: { isMyTeam: boolean }) => {
@@ -48,7 +53,20 @@ const FoulList = (props: { isMyTeam: boolean }) => {
           </div>
         </div>
         <div className="flex flex-col items-end gap-1">
-          <span>이름 변경</span>
+          <div className="flex">
+            <span>이름 변경</span>
+            <Popover>
+              <PopoverHandler>
+                <div className="border border-gray-500 rounded-full w-5 h-5 text-center self-center text-sm mx-1 text-gray-500">
+                  ?
+                </div>
+              </PopoverHandler>
+              <PopoverContent placeholder={undefined}>
+                버튼을 눌러 이름 변경 상태로 전환합니다.
+              </PopoverContent>
+            </Popover>
+          </div>
+
           <Switch
             checked={disabled}
             onChange={() => setDisabled(!disabled)}

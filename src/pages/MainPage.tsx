@@ -70,6 +70,11 @@ const MainPage = () => {
         >
           결과 보기
         </Button>
+        <p className="text-sm text-gray-700 mb-5">
+          - 새로고침 시 모든 데이터가 초기화됩니다. 경기 중간중간 캡처로
+          저장해주세요.
+          <br />- 버튼은 누른 즉시 카운트가 증가합니다. 슛에 맞추어 눌러주세요.
+        </p>
       </div>
       {openResult && (
         <div className="md:py-5">
