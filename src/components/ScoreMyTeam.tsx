@@ -20,12 +20,6 @@ const ScoreMyTeam = ({ handleMyScore }: ScoreMyTeamProps) => {
         ))}
       </div>
       <hr className="my-2" />
-      <h4>선수 통계</h4>
-      <div className="grid grid-flow-col grid-rows-6 gap-4 justify-items-center py-4">
-        {players.map((player, index) => (
-          <Result key={index} player={player} />
-        ))}
-      </div>
     </div>
   );
 };
