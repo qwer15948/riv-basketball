@@ -16,7 +16,7 @@ const Result = ({ player }: ResultProps) => {
       <h6 className="text-gray-400 text-xs">{playerName}</h6>
       <div className="flex justify-between">
         <p className="font-normal">자유투:</p>
-        <p>
+        <p className={totalShots[0] === 0 ? "font-normal" : ""}>
           {successfulShots[0]} / {totalShots[0]} (
           {totalShots[0] === 0
             ? 0
@@ -26,9 +26,9 @@ const Result = ({ player }: ResultProps) => {
       </div>
       <div className="flex justify-between">
         <p className="font-normal">2점:</p>
-        <p>
+        <p className={totalShots[0] === 0 ? "font-normal" : ""}>
           {successfulShots[1]} / {totalShots[1]} (
-          {totalShots[0] === 0
+          {totalShots[1] === 0
             ? 0
             : ((successfulShots[1] / totalShots[1]) * 100).toFixed(2)}
           %)
@@ -36,9 +36,9 @@ const Result = ({ player }: ResultProps) => {
       </div>
       <div className="flex justify-between">
         <p className="font-normal">3점:</p>
-        <p>
+        <p className={totalShots[0] === 0 ? "font-normal" : ""}>
           {successfulShots[2]} / {totalShots[2]} (
-          {totalShots[0] === 0
+          {totalShots[2] === 0
             ? 0
             : ((successfulShots[2] / totalShots[2]) * 100).toFixed(2)}
           %)
@@ -46,11 +46,11 @@ const Result = ({ player }: ResultProps) => {
       </div>
       <div className="flex justify-between">
         <p className="font-normal">리바운드:</p>
-        <p>{rebounds}</p>
+        <p className={rebounds === 0 ? "font-normal" : ""}>{rebounds}</p>
       </div>
       <div className="flex justify-between">
         <p className="font-normal">턴오버:</p>
-        <p>{turnovers}</p>
+        <p className={rebounds === 0 ? "font-normal" : ""}>{turnovers}</p>
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
 import ScoreSelect from "./ScoreSelect";
-import Result from "./Result";
 
 interface ScoreMyTeamProps {
   handleMyScore: (point: number) => void;
@@ -10,7 +9,7 @@ const ScoreMyTeam = ({ handleMyScore }: ScoreMyTeamProps) => {
 
   return (
     <div className="">
-      <div className="grid grid-cols-2 gap-1 justify-items-center">
+      <div className="grid grid-flow-col grid-rows-6 gap-1 justify-items-center">
         {players.map((player, index) => (
           <ScoreSelect
             key={index}

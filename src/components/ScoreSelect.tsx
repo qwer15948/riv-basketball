@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Input } from "@material-tailwind/react";
+import { Button, ButtonGroup } from "@material-tailwind/react";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { playerScoresState } from "../atoms/recoilAtoms";
@@ -87,17 +87,12 @@ const ScoreSelect = ({ handleMyScore, player }: InputNumberProps) => {
 
   return (
     <div>
-      <div className="flex gap-1">
-        <Input
-          className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-          containerProps={{ className: "!min-w-0 !w-full !p-0 h-8" }}
-          crossOrigin={undefined}
-          labelProps={{
-            className: "hidden",
-          }}
-          disabled
-          value={playerName}
-        />
+      <div
+        className={buttonStates.every((state) => state === false) ? "mb-8" : ""}
+      >
+        <p className="text-sm text-gray-700">
+          {playerName ? playerName : "선수"}
+        </p>
         <ButtonGroup
           size="sm"
           placeholder={undefined}
@@ -106,7 +101,7 @@ const ScoreSelect = ({ handleMyScore, player }: InputNumberProps) => {
           {[1, 2, 3].map((number, index) => (
             <Button
               key={index}
-              className="p-1 w-7 bg-blue-gray-500"
+              className="p-1 w-9 bg-blue-gray-500"
               onClick={() => handleButtonClick(index)}
               placeholder={undefined}
             >
@@ -114,14 +109,14 @@ const ScoreSelect = ({ handleMyScore, player }: InputNumberProps) => {
             </Button>
           ))}
           <Button
-            className="p-1 w-7 bg-blue-gray-500"
+            className="p-1 w-9 bg-blue-gray-500"
             onClick={() => handleRebound()}
             placeholder={undefined}
           >
             리
           </Button>
           <Button
-            className="p-1 w-7 bg-blue-gray-500"
+            className="p-1 w-9 bg-blue-gray-500"
             onClick={() => handleTurnover()}
             placeholder={undefined}
           >

@@ -74,7 +74,7 @@ const FoulList = (props: { isMyTeam: boolean }) => {
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-1 justify-items-center">
+      <div className="grid grid-flow-col grid-rows-6 gap-1 justify-items-center">
         {props.isMyTeam
           ? players.map((player, i) => {
               return (

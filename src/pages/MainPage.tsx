@@ -29,6 +29,7 @@ const MainPage = () => {
   return (
     <div className="min-w-[425px] max-w-[425px] md:min-w-[1200px] md:max-w-[1400px] px-5 md:grid md:grid-cols-3 md:gap-5">
       <div>
+        {/* 우리팀 파울 기록 */}
         <div className="py-5 md:max-w-[425px]">
           <div className="flex justify-between mb-2">
             <h3>RIV</h3>
@@ -36,6 +37,7 @@ const MainPage = () => {
           </div>
           <FoulList isMyTeam={true} />
         </div>
+        {/* 상대팀 파울 기록 */}
         <div className="py-5 md:max-w-[425px]">
           <div className="flex justify-between mb-2 items-center">
             <div className="w-10">
