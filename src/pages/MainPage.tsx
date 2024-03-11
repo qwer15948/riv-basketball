@@ -143,7 +143,7 @@ const MainPage = () => {
             onClick={handleReset}
             placeholder={undefined}
           >
-            점수만 초기화
+            초기화(팀 이름 유지)
           </Button>
           <Button
             color="red"
@@ -151,7 +151,7 @@ const MainPage = () => {
             onClick={useReset}
             placeholder={undefined}
           >
-            모든 기록 초기화
+            초기화(모든 기록)
           </Button>
         </div>
 
