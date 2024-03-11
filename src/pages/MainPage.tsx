@@ -50,6 +50,7 @@ const MainPage = () => {
     setRivalScore(0);
     setFouls([...Array(12)].map(() => 0));
     setRivalFouls([...Array(12)].map(() => 0));
+    setRivalName("");
   };
 
   // 점수만 초기화
@@ -71,6 +72,7 @@ const MainPage = () => {
     setRivalScore(0);
     setFouls([...Array(12)].map(() => 0));
     setRivalFouls([...Array(12)].map(() => 0));
+    setRivalName("");
   };
 
   return (
