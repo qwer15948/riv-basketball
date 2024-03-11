@@ -2,7 +2,7 @@ import { Checkbox } from "@material-tailwind/react";
 import { useState } from "react";
 
 const Timeout = () => {
-  const [foul, setFoul] = useState<boolean[]>([...Array(4)].map(() => false));
+  const [foul, setFoul] = useState<boolean[]>([...Array(5)].map(() => false));
 
   const handleCheckboxChange = (index: number) => {
     const updatedFoul = [...foul];
@@ -11,7 +11,7 @@ const Timeout = () => {
   };
 
   return (
-    <div className="flex gap-1.5 pr-5">
+    <div className="flex gap-1.5">
       <h4>Time</h4>
       <Checkbox
         ripple={false}
@@ -44,6 +44,14 @@ const Timeout = () => {
         checked={foul[3]}
         containerProps={{ className: "!p-0" }}
         onChange={() => handleCheckboxChange(3)}
+        crossOrigin={undefined}
+      />
+      <Checkbox
+        ripple={false}
+        className="!h-6 !w-6 border-gray-900/20 bg-gray-900/10 hover:before:opacity-0"
+        checked={foul[4]}
+        containerProps={{ className: "!p-0" }}
+        onChange={() => handleCheckboxChange(4)}
         crossOrigin={undefined}
       />
     </div>

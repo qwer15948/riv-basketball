@@ -1,4 +1,7 @@
 import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
+
+const { persistAtom } = recoilPersist();
 
 interface PlayerScores {
   [player: string]: {
@@ -98,4 +101,5 @@ export const playerScoresState = atom<PlayerScores>({
       turnovers: 0,
     },
   },
+  effects_UNSTABLE: [persistAtom],
 });

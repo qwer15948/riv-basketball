@@ -137,14 +137,14 @@ const ScoreSelect = ({ handleMyScore, player }: InputNumberProps) => {
                 className="h-6 rounded-sm"
               >
                 <Button
-                  className="p-1 w-7 bg-blue-500"
+                  className="p-1 w-8 bg-blue-500"
                   onClick={() => handleSuccessfulShots(index)}
                   placeholder={undefined}
                 >
                   O
                 </Button>
                 <Button
-                  className="p-1 w-7 bg-gray-800"
+                  className="p-1 w-8 bg-gray-800"
                   onClick={() => handleCloseButton(index)}
                   placeholder={undefined}
                 >

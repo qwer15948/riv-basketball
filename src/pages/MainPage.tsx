@@ -5,6 +5,9 @@ import Score from "../components/Score";
 import ScoreMyTeam from "../components/ScoreMyTeam";
 import { useState } from "react";
 import Result from "../components/Result";
+import { useResetRecoilState } from "recoil";
+import { playerScoresState } from "../atoms/recoilAtoms";
+import { getCurrentDate } from "../utils/getCurrentDate";
 
 const MainPage = () => {
   const [myScore, setMyScore] = useState<number>(0);
@@ -26,8 +29,14 @@ const MainPage = () => {
     setOpenResult((prev) => !prev);
   };
 
+  const resetList = useResetRecoilState(playerScoresState);
+  const useReset = () => {
+    resetList();
+  };
+
   return (
     <div className="min-w-[425px] max-w-[425px] md:min-w-[1200px] md:max-w-[1400px] px-5 md:grid md:grid-cols-3 md:gap-5">
+      <div className="mt-3">{getCurrentDate()}</div>
       <div>
         {/* 우리팀 파울 기록 */}
         <div className="py-5 md:max-w-[425px]">
@@ -66,16 +75,23 @@ const MainPage = () => {
           <ScoreMyTeam handleMyScore={handleMyScore} />
         </div>
         <Button
-          className="w-full my-5"
+          className="w-full"
           onClick={handleOpenResult}
           placeholder={undefined}
         >
           결과 보기
         </Button>
+        <Button
+          color="red"
+          className="w-full my-2"
+          onClick={useReset}
+          placeholder={undefined}
+        >
+          기록 초기화
+        </Button>
         <p className="text-sm text-gray-700 mb-5">
-          - 새로고침 시 모든 데이터가 초기화됩니다. 경기 중간중간 캡처로
-          저장해주세요.
-          <br />- 버튼은 누른 즉시 카운트가 증가합니다. 슛에 맞추어 눌러주세요.
+          - 버튼은 누른 즉시 카운트가 증가합니다. 슛에 맞추어 눌러주세요.
+          <br />- 결과 저장은 캡처로 부탁드립니다.
         </p>
       </div>
       {openResult && (
