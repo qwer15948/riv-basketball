@@ -11,7 +11,7 @@ const Timeout = () => {
   };
 
   return (
-    <div className="flex gap-1.5">
+    <div className="flex gap-1">
       <h4>Time</h4>
       <Checkbox
         ripple={false}
