@@ -103,3 +103,33 @@ export const playerScoresState = atom<PlayerScores>({
   },
   effects_UNSTABLE: [persistAtom],
 });
+
+export const myScoreState = atom<number>({
+  key: "myScoreState",
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const rivalScoreState = atom<number>({
+  key: "rivalScoreState",
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const foulsState = atom<number[]>({
+  key: "foulsState",
+  default: [...Array(12)].map(() => 0),
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const rivalFoulsState = atom<number[]>({
+  key: "rivalFoulsState",
+  default: [...Array(12)].map(() => 0),
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const rivalNameState = atom<string>({
+  key: "rivalName",
+  default: "",
+  effects_UNSTABLE: [persistAtom],
+});

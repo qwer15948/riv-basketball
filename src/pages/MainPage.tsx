@@ -6,17 +6,24 @@ import ScoreMyTeam from "../components/ScoreMyTeam";
 import { useState } from "react";
 import Result from "../components/Result";
 import { useRecoilState, useResetRecoilState } from "recoil";
-import { playerScoresState } from "../atoms/recoilAtoms";
+import {
+  foulsState,
+  myScoreState,
+  playerScoresState,
+  rivalFoulsState,
+  rivalNameState,
+  rivalScoreState,
+} from "../atoms/recoilAtoms";
 import { getCurrentDate } from "../utils/getCurrentDate";
 import FoulQuarter from "../components/FoulQuarter";
 
 const MainPage = () => {
-  const [myScore, setMyScore] = useState<number>(0);
-  const [rivalScore, setRivalScore] = useState<number>(0);
-  const [fouls, setFouls] = useState<number[]>([...Array(12)].map(() => 0));
-  const [rivalFouls, setRivalFouls] = useState<number[]>(
-    [...Array(12)].map(() => 0)
-  );
+  const [myScore, setMyScore] = useRecoilState(myScoreState);
+  const [rivalScore, setRivalScore] = useRecoilState(rivalScoreState);
+  const [fouls, setFouls] = useRecoilState(foulsState);
+  const [rivalFouls, setRivalFouls] = useRecoilState(rivalFoulsState);
+  const [rivalName, setRivalName] = useRecoilState(rivalNameState);
+
   const [disabled, setDisabled] = useState<boolean>(false);
 
   const handleMyScore = (point: number) => {
@@ -29,7 +36,7 @@ const MainPage = () => {
 
   const players = Array.from({ length: 12 }, (_, i) => `player${i + 1}`);
 
-  const [openResult, setOpenResult] = useState<boolean>(false);
+  const [openResult, setOpenResult] = useState<boolean>(true);
 
   const handleOpenResult = () => {
     setOpenResult((prev) => !prev);
@@ -39,6 +46,10 @@ const MainPage = () => {
   const resetList = useResetRecoilState(playerScoresState);
   const useReset = () => {
     resetList();
+    setMyScore(0);
+    setRivalScore(0);
+    setFouls([...Array(12)].map(() => 0));
+    setRivalFouls([...Array(12)].map(() => 0));
   };
 
   // 점수만 초기화
@@ -90,6 +101,8 @@ const MainPage = () => {
                 placeholder="Standard"
                 crossOrigin={undefined}
                 className="!text-base"
+                value={rivalName}
+                onChange={(e) => setRivalName(e.target.value)}
               />
             </div>
             <Timeout />
