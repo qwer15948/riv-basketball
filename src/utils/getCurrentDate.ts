@@ -1,7 +1,7 @@
 export function getCurrentDate(): string {
   const currentDate: Date = new Date();
 
-  currentDate.setHours(currentDate.getHours() + 9);
+  currentDate.setHours(currentDate.getHours());
 
   const year: number = currentDate.getFullYear(); // 년도
   const month: string = String(currentDate.getMonth() + 1).padStart(2, "0");

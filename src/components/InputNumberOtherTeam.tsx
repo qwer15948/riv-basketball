@@ -5,7 +5,6 @@ interface InputNumberProps {
   isDisabled?: boolean;
   onIncrement: () => void;
   onDecrement: () => void;
-  player: string;
 }
 
 const InputNumberOtherTeam = ({
@@ -13,7 +12,6 @@ const InputNumberOtherTeam = ({
   isDisabled,
   onIncrement,
   onDecrement,
-  player,
 }: InputNumberProps) => {
   return (
     <div className="flex gap-1">

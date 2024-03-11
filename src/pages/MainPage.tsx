@@ -5,13 +5,19 @@ import Score from "../components/Score";
 import ScoreMyTeam from "../components/ScoreMyTeam";
 import { useState } from "react";
 import Result from "../components/Result";
-import { useResetRecoilState } from "recoil";
+import { useRecoilState, useResetRecoilState } from "recoil";
 import { playerScoresState } from "../atoms/recoilAtoms";
 import { getCurrentDate } from "../utils/getCurrentDate";
+import FoulQuarter from "../components/FoulQuarter";
 
 const MainPage = () => {
   const [myScore, setMyScore] = useState<number>(0);
   const [rivalScore, setRivalScore] = useState<number>(0);
+  const [fouls, setFouls] = useState<number[]>([...Array(12)].map(() => 0));
+  const [rivalFouls, setRivalFouls] = useState<number[]>(
+    [...Array(12)].map(() => 0)
+  );
+  const [disabled, setDisabled] = useState<boolean>(false);
 
   const handleMyScore = (point: number) => {
     setMyScore((prev) => prev + point);
@@ -29,22 +35,50 @@ const MainPage = () => {
     setOpenResult((prev) => !prev);
   };
 
+  // 전체 초기화
   const resetList = useResetRecoilState(playerScoresState);
   const useReset = () => {
     resetList();
   };
 
+  // 점수만 초기화
+  const [playerScores, setPlayerScores] = useRecoilState(playerScoresState); // 기존의 playerScoresState를 사용합니다.
+
+  const handleReset = () => {
+    const newPlayerScores = { ...playerScores };
+    Object.keys(newPlayerScores).forEach((playerKey) => {
+      newPlayerScores[playerKey] = {
+        name: newPlayerScores[playerKey].name,
+        totalShots: [0, 0, 0],
+        successfulShots: [0, 0, 0],
+        rebounds: 0,
+        turnovers: 0,
+      };
+    });
+    setPlayerScores(newPlayerScores);
+    setMyScore(0);
+    setRivalScore(0);
+    setFouls([...Array(12)].map(() => 0));
+    setRivalFouls([...Array(12)].map(() => 0));
+  };
+
   return (
     <div className="min-w-[425px] max-w-[425px] md:min-w-[1200px] md:max-w-[1400px] px-5 md:grid md:grid-cols-3 md:gap-5">
-      <div className="mt-3">{getCurrentDate()}</div>
       <div>
+        <div className="mt-3">{getCurrentDate()}</div>
         {/* 우리팀 파울 기록 */}
         <div className="py-5 md:max-w-[425px]">
           <div className="flex justify-between mb-2">
             <h3>RIV</h3>
             <Timeout />
           </div>
-          <FoulList isMyTeam={true} />
+          <FoulQuarter disabled={disabled} setDisabled={setDisabled} />
+          <FoulList
+            isMyTeam={true}
+            fouls={fouls}
+            setFouls={setFouls}
+            disabled={disabled}
+          />
         </div>
         {/* 상대팀 파울 기록 */}
         <div className="py-5 md:max-w-[425px]">
@@ -60,7 +94,13 @@ const MainPage = () => {
             </div>
             <Timeout />
           </div>
-          <FoulList isMyTeam={false} />
+          <FoulQuarter disabled={disabled} setDisabled={setDisabled} />
+          <FoulList
+            isMyTeam={false}
+            fouls={rivalFouls}
+            setFouls={setRivalFouls}
+            disabled={disabled}
+          />
         </div>
       </div>
       <div>
@@ -81,17 +121,29 @@ const MainPage = () => {
         >
           결과 보기
         </Button>
-        <Button
-          color="red"
-          className="w-full my-2"
-          onClick={useReset}
-          placeholder={undefined}
-        >
-          기록 초기화
-        </Button>
+        <div className="flex gap-1">
+          <Button
+            color="indigo"
+            className="w-full my-2"
+            onClick={handleReset}
+            placeholder={undefined}
+          >
+            점수만 초기화
+          </Button>
+          <Button
+            color="red"
+            className="w-full my-2"
+            onClick={useReset}
+            placeholder={undefined}
+          >
+            모든 기록 초기화
+          </Button>
+        </div>
+
         <p className="text-sm text-gray-700 mb-5">
-          - 버튼은 누른 즉시 카운트가 증가합니다. 슛에 맞추어 눌러주세요.
+          - 버튼은 누른 즉시 카운트가 증가합니다.
           <br />- 결과 저장은 캡처로 부탁드립니다.
+          <br />- 쿼터별 파울과 타임아웃 기록은 직접 초기화 해주세요. (ㅠㅠ)
         </p>
       </div>
       {openResult && (
