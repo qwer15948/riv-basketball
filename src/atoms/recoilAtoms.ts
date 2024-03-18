@@ -128,6 +128,12 @@ export const rivalFoulsState = atom<number[]>({
   effects_UNSTABLE: [persistAtom],
 });
 
+export const myNameState = atom<string>({
+  key: "myNameState",
+  default: "",
+  effects_UNSTABLE: [persistAtom],
+});
+
 export const rivalNameState = atom<string>({
   key: "rivalName",
   default: "",
