@@ -1,9 +1,9 @@
 import FoulList from "../components/Foul/FoulList";
 import Timeout from "../components/Foul/Timeout";
-import { Button, Input } from "@material-tailwind/react";
+import { Button, Dialog, DialogBody, Input } from "@material-tailwind/react";
 import Score from "../components/Score";
 import ScoreMyTeam from "../components/ScoreMyTeam";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Result from "../components/Result";
 import { useRecoilState, useResetRecoilState } from "recoil";
 import {
@@ -16,6 +16,7 @@ import {
 } from "../atoms/recoilAtoms";
 import { getCurrentDate } from "../utils/getCurrentDate";
 import FoulQuarter from "../components/Foul/FoulQuarter";
+import html2canvas from "html2canvas";
 
 const MainPage = () => {
   const [myScore, setMyScore] = useRecoilState(myScoreState);
@@ -34,13 +35,11 @@ const MainPage = () => {
     setRivalScore((prev) => prev + point);
   };
 
-  const players = Array.from({ length: 12 }, (_, i) => `player${i + 1}`);
+  const [openResult, setOpenResult] = useState<boolean>(false);
 
-  // const [openResult, setOpenResult] = useState<boolean>(true);
-
-  // const handleOpenResult = () => {
-  //   setOpenResult((prev) => !prev);
-  // };
+  const handleOpenResult = () => {
+    setOpenResult((prev) => !prev);
+  };
 
   // 전체 초기화
   const resetList = useResetRecoilState(playerScoresState);
@@ -73,6 +72,28 @@ const MainPage = () => {
     setFouls([...Array(12)].map(() => 0));
     setRivalFouls([...Array(12)].map(() => 0));
     setRivalName("");
+  };
+
+  const resultRef = useRef<HTMLDivElement>(null);
+
+  const saveAsImage = () => {
+    if (!resultRef.current) return;
+
+    const { scrollWidth, scrollHeight } = resultRef.current;
+    resultRef.current.style.width = `${scrollWidth}px`;
+    resultRef.current.style.height = `${scrollHeight}px`;
+
+    html2canvas(resultRef.current).then((canvas) => {
+      const link = document.createElement("a");
+      link.href = canvas.toDataURL("image/png");
+      link.download = "result_image.png";
+      link.click();
+
+      if (!resultRef.current) return;
+
+      resultRef.current.style.width = "";
+      resultRef.current.style.height = "";
+    });
   };
 
   return (
@@ -129,13 +150,13 @@ const MainPage = () => {
         <div className="md:max-w-[425px]">
           <ScoreMyTeam handleMyScore={handleMyScore} />
         </div>
-        {/* <Button
+        <Button
           className="w-full"
           onClick={handleOpenResult}
           placeholder={undefined}
         >
           결과 보기
-        </Button> */}
+        </Button>
         <div className="flex gap-1">
           <Button
             color="indigo"
@@ -160,12 +181,42 @@ const MainPage = () => {
           <br />- 쿼터별 파울과 타임아웃 기록은 직접 초기화 해주세요. (ㅠㅠ)
         </p>
       </div>
-      <div className="md:py-5">
-        <h4>선수 통계</h4>
-        <div className="grid grid-flow-col grid-rows-6 gap-4 justify-items-center py-4">
-          <Result />
+      {/* <Dialog
+        open={openResult}
+        handler={handleOpenResult}
+        placeholder={undefined}
+        size="xl"
+      >
+        <DialogBody placeholder={undefined} className="overflow-scroll">
+          <div className="md:col-span-3">
+            <div className="md:py-5">
+              <h4>선수 통계</h4>
+              <div className="py-4">
+                <Result resultRef={resultRef} />
+              </div>
+            </div>
+          </div>
+        </DialogBody>
+        <Button onClick={saveAsImage} placeholder={undefined}>
+          결과 저장하기
+        </Button>
+      </Dialog> */}
+
+      {openResult && (
+        <div>
+          <h4>선수 통계</h4>
+          <div className="py-4" ref={resultRef}>
+            <Result />
+          </div>
+          <Button
+            onClick={saveAsImage}
+            placeholder={undefined}
+            className="bg-primary"
+          >
+            이미지로 저장
+          </Button>
         </div>
-      </div>
+      )}
     </div>
   );
 };
