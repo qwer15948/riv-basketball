@@ -1,6 +1,6 @@
 import { Button, ButtonGroup, Input } from "@material-tailwind/react";
 import { useRecoilState } from "recoil";
-import { playerScoresState } from "../atoms/recoilAtoms";
+import { playerScoresState } from "../../atoms/recoilAtoms";
 
 interface InputNumberProps {
   value: number;
@@ -47,7 +47,7 @@ const InputNumber = ({
       />
       <ButtonGroup size="sm" placeholder={undefined} className="h-8 rounded-sm">
         <Button
-          className="p-1 w-5 bg-blue-gray-500"
+          className="p-1 w-5 bg-primary rounded-l-md"
           onClick={onDecrement}
           placeholder={undefined}
         >
@@ -64,7 +64,7 @@ const InputNumber = ({
           {value}
         </Button>
         <Button
-          className="p-1 w-5 bg-blue-gray-500"
+          className="p-1 w-5 bg-primary rounded-r-md"
           onClick={onIncrement}
           placeholder={undefined}
         >

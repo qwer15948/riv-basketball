@@ -25,9 +25,13 @@ const InputNumberOtherTeam = ({
         }}
         disabled={isDisabled}
       />
-      <ButtonGroup size="sm" placeholder={undefined} className="h-8 rounded-sm">
+      <ButtonGroup
+        size="sm"
+        placeholder={undefined}
+        className="h-8 rounded-s-md"
+      >
         <Button
-          className="p-1 w-5 bg-blue-gray-500"
+          className="p-1 w-5 bg-primary rounded-l-md"
           onClick={onDecrement}
           placeholder={undefined}
         >
@@ -44,7 +48,7 @@ const InputNumberOtherTeam = ({
           {value}
         </Button>
         <Button
-          className="p-1 w-5 bg-blue-gray-500"
+          className="p-1 w-5 bg-primary rounded-r-md"
           onClick={onIncrement}
           placeholder={undefined}
         >

@@ -1,5 +1,5 @@
-import FoulList from "../components/FoulList";
-import Timeout from "../components/Timeout";
+import FoulList from "../components/Foul/FoulList";
+import Timeout from "../components/Foul/Timeout";
 import { Button, Input } from "@material-tailwind/react";
 import Score from "../components/Score";
 import ScoreMyTeam from "../components/ScoreMyTeam";
@@ -15,7 +15,7 @@ import {
   rivalScoreState,
 } from "../atoms/recoilAtoms";
 import { getCurrentDate } from "../utils/getCurrentDate";
-import FoulQuarter from "../components/FoulQuarter";
+import FoulQuarter from "../components/Foul/FoulQuarter";
 
 const MainPage = () => {
   const [myScore, setMyScore] = useRecoilState(myScoreState);
@@ -36,11 +36,11 @@ const MainPage = () => {
 
   const players = Array.from({ length: 12 }, (_, i) => `player${i + 1}`);
 
-  const [openResult, setOpenResult] = useState<boolean>(true);
+  // const [openResult, setOpenResult] = useState<boolean>(true);
 
-  const handleOpenResult = () => {
-    setOpenResult((prev) => !prev);
-  };
+  // const handleOpenResult = () => {
+  //   setOpenResult((prev) => !prev);
+  // };
 
   // 전체 초기화
   const resetList = useResetRecoilState(playerScoresState);
@@ -129,25 +129,24 @@ const MainPage = () => {
         <div className="md:max-w-[425px]">
           <ScoreMyTeam handleMyScore={handleMyScore} />
         </div>
-        <Button
+        {/* <Button
           className="w-full"
           onClick={handleOpenResult}
           placeholder={undefined}
         >
           결과 보기
-        </Button>
+        </Button> */}
         <div className="flex gap-1">
           <Button
             color="indigo"
-            className="w-full my-2"
+            className="w-full my-2 bg-primary"
             onClick={handleReset}
             placeholder={undefined}
           >
             초기화(팀 이름 유지)
           </Button>
           <Button
-            color="red"
-            className="w-full my-2"
+            className="w-full my-2 bg-secondary"
             onClick={useReset}
             placeholder={undefined}
           >
@@ -161,16 +160,12 @@ const MainPage = () => {
           <br />- 쿼터별 파울과 타임아웃 기록은 직접 초기화 해주세요. (ㅠㅠ)
         </p>
       </div>
-      {openResult && (
-        <div className="md:py-5">
-          <h4>선수 통계</h4>
-          <div className="grid grid-flow-col grid-rows-6 gap-4 justify-items-center py-4">
-            {players.map((player, index) => (
-              <Result key={index} player={player} />
-            ))}
-          </div>
+      <div className="md:py-5">
+        <h4>선수 통계</h4>
+        <div className="grid grid-flow-col grid-rows-6 gap-4 justify-items-center py-4">
+          <Result />
         </div>
-      )}
+      </div>
     </div>
   );
 };
