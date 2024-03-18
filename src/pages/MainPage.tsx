@@ -103,7 +103,7 @@ const MainPage = () => {
   };
 
   return (
-    <div className="min-w-[425px] max-w-[425px] md:min-w-[1200px] md:max-w-[1400px]">
+    <div className="min-w-[425px] max-w-[425px] md:min-w-[1500px] md:max-w-[1500px]">
       <div className=" px-5 md:grid md:grid-cols-3 md:gap-5">
         <div>
           <div className="mt-3">{getCurrentDate()}</div>
