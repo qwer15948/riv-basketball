@@ -1,6 +1,6 @@
 import FoulList from "../components/Foul/FoulList";
 import Timeout from "../components/Foul/Timeout";
-import { Button, Dialog, DialogBody, Input } from "@material-tailwind/react";
+import { Button, Input } from "@material-tailwind/react";
 import Score from "../components/Score";
 import ScoreMyTeam from "../components/ScoreMyTeam";
 import { useRef, useState } from "react";
@@ -50,6 +50,7 @@ const MainPage = () => {
     setFouls([...Array(12)].map(() => 0));
     setRivalFouls([...Array(12)].map(() => 0));
     setRivalName("");
+    window.location.reload();
   };
 
   // 점수만 초기화
@@ -72,6 +73,7 @@ const MainPage = () => {
     setFouls([...Array(12)].map(() => 0));
     setRivalFouls([...Array(12)].map(() => 0));
     setRivalName("");
+    window.location.reload();
   };
 
   const resultRef = useRef<HTMLDivElement>(null);
@@ -155,7 +157,7 @@ const MainPage = () => {
           onClick={handleOpenResult}
           placeholder={undefined}
         >
-          결과 보기
+          선수 기록 확인하기
         </Button>
         <div className="flex gap-1">
           <Button
@@ -164,7 +166,7 @@ const MainPage = () => {
             onClick={handleReset}
             placeholder={undefined}
           >
-            초기화(팀 이름 유지)
+            초기화(우리팀 이름 유지)
           </Button>
           <Button
             className="w-full my-2 bg-secondary"
@@ -174,37 +176,9 @@ const MainPage = () => {
             초기화(모든 기록)
           </Button>
         </div>
-
-        <p className="text-sm text-gray-700 mb-5">
-          - 버튼은 누른 즉시 카운트가 증가합니다.
-          <br />- 결과 저장은 캡처로 부탁드립니다.
-          <br />- 쿼터별 파울과 타임아웃 기록은 직접 초기화 해주세요. (ㅠㅠ)
-        </p>
       </div>
-      {/* <Dialog
-        open={openResult}
-        handler={handleOpenResult}
-        placeholder={undefined}
-        size="xl"
-      >
-        <DialogBody placeholder={undefined} className="overflow-scroll">
-          <div className="md:col-span-3">
-            <div className="md:py-5">
-              <h4>선수 통계</h4>
-              <div className="py-4">
-                <Result resultRef={resultRef} />
-              </div>
-            </div>
-          </div>
-        </DialogBody>
-        <Button onClick={saveAsImage} placeholder={undefined}>
-          결과 저장하기
-        </Button>
-      </Dialog> */}
-
       {openResult && (
         <div>
-          <h4>선수 통계</h4>
           <div className="py-4" ref={resultRef}>
             <Result />
           </div>
