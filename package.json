@@ -29,7 +29,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://qwer15948.github.io/riv-basketball/",
+  "homepage": "https://basketball-scorecard.xyz/",
   "eslintConfig": {
     "extends": [
       "react-app",
