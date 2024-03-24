@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/riv-basketball/static/css/main.56fdb695.css",
-    "main.js": "/riv-basketball/static/js/main.f4bb25f4.js",
-    "index.html": "/riv-basketball/index.html",
-    "main.56fdb695.css.map": "/riv-basketball/static/css/main.56fdb695.css.map",
-    "main.f4bb25f4.js.map": "/riv-basketball/static/js/main.f4bb25f4.js.map"
+    "main.css": "/static/css/main.56fdb695.css",
+    "main.js": "/static/js/main.897f68c9.js",
+    "index.html": "/index.html",
+    "main.56fdb695.css.map": "/static/css/main.56fdb695.css.map",
+    "main.897f68c9.js.map": "/static/js/main.897f68c9.js.map"
   },
   "entrypoints": [
     "static/css/main.56fdb695.css",
-    "static/js/main.f4bb25f4.js"
+    "static/js/main.897f68c9.js"
   ]
 }
