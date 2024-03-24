@@ -10,43 +10,33 @@ const Score = ({ myScore, rivalScore, handleRivalScore }: ScoreProps) => {
   return (
     <div className="flex justify-center">
       <Button
-        className="w-[104px] h-[104px] text-4xl bg-indigo-700"
+        className="w-[104px] h-[104px] text-4xl bg-tertiary"
         placeholder={undefined}
+        ripple={false}
       >
         {myScore}
       </Button>
       <span className="text-8xl">:</span>
-      <Button className="w-[104px] h-[104px] text-4xl" placeholder={undefined}>
+      <Button
+        className="w-[104px] h-[104px] text-4xl bg-primary"
+        placeholder={undefined}
+        ripple={false}
+      >
         {rivalScore}
       </Button>
       <div className="flex flex-col gap-1 ml-2">
-        <Button
-          variant="outlined"
-          ripple={false}
-          className="p-1 w-8 h-8 border-gray-400"
-          placeholder={undefined}
-          onClick={() => handleRivalScore(1)}
-        >
-          1
-        </Button>
-        <Button
-          variant="outlined"
-          ripple={false}
-          className="p-1 w-8 h-8 border-gray-400"
-          placeholder={undefined}
-          onClick={() => handleRivalScore(2)}
-        >
-          2
-        </Button>
-        <Button
-          variant="outlined"
-          ripple={false}
-          className="p-1 w-8 h-8 border-gray-400"
-          placeholder={undefined}
-          onClick={() => handleRivalScore(3)}
-        >
-          3
-        </Button>
+        {[1, 2, 3].map((number, index) => (
+          <Button
+            key={index}
+            variant="outlined"
+            ripple={false}
+            className="p-1 w-8 h-8 border-gray-400"
+            placeholder={undefined}
+            onClick={() => handleRivalScore(number)}
+          >
+            {number}
+          </Button>
+        ))}
       </div>
     </div>
   );

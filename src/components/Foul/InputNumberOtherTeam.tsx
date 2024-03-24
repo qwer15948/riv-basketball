@@ -25,16 +25,20 @@ const InputNumberOtherTeam = ({
         }}
         disabled={isDisabled}
       />
-      <ButtonGroup size="sm" placeholder={undefined} className="h-8 rounded-sm">
+      <ButtonGroup
+        size="sm"
+        placeholder={undefined}
+        className="h-8 rounded-s-md"
+      >
         <Button
-          className="p-1 w-5 bg-blue-gray-500"
+          className="p-1 w-5 bg-primary rounded-l-md"
           onClick={onDecrement}
           placeholder={undefined}
         >
           -
         </Button>
         <Button
-          className={`font-extrabold px-2 py-1 bg-blue-gray-50 text-sm ${
+          className={`font-extrabold w-6 px-2 py-1 bg-blue-gray-50 text-sm ${
             value === 4 ? "bg-red-800 !text-white" : "text-black"
           }
           ${value === 5 ? "bg-black text-white" : "text-black"}`}
@@ -44,7 +48,7 @@ const InputNumberOtherTeam = ({
           {value}
         </Button>
         <Button
-          className="p-1 w-5 bg-blue-gray-500"
+          className="p-1 w-5 bg-primary rounded-r-md"
           onClick={onIncrement}
           placeholder={undefined}
         >

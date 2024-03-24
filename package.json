@@ -11,8 +11,10 @@
     "@types/node": "^16.18.86",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
+    "html2canvas": "^1.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^5.0.1",
     "react-scripts": "5.0.1",
     "recoil": "^0.7.7",
     "recoil-persist": "^5.1.0",
@@ -27,7 +29,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://qwer15948.github.io/riv-basketball/",
+  "homepage": "https://basketball-scorecard.xyz/",
   "eslintConfig": {
     "extends": [
       "react-app",

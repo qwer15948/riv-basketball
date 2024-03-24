@@ -101,7 +101,9 @@ const ScoreSelect = ({ handleMyScore, player }: InputNumberProps) => {
           {[1, 2, 3].map((number, index) => (
             <Button
               key={index}
-              className="p-1 w-9 bg-blue-gray-500"
+              className={`p-1 w-9 bg-primary ${
+                index === 0 ? "rounded-l-md" : ""
+              }`}
               onClick={() => handleButtonClick(index)}
               placeholder={undefined}
             >
@@ -109,14 +111,14 @@ const ScoreSelect = ({ handleMyScore, player }: InputNumberProps) => {
             </Button>
           ))}
           <Button
-            className="p-1 w-9 bg-blue-gray-500"
+            className="p-1 w-9 bg-primary"
             onClick={() => handleRebound()}
             placeholder={undefined}
           >
-            리
+            R
           </Button>
           <Button
-            className="p-1 w-9 bg-blue-gray-500"
+            className="p-1 w-9 bg-primary rounded-r-md"
             onClick={() => handleTurnover()}
             placeholder={undefined}
           >
@@ -137,14 +139,14 @@ const ScoreSelect = ({ handleMyScore, player }: InputNumberProps) => {
                 className="h-6 rounded-sm"
               >
                 <Button
-                  className="p-1 w-8 bg-blue-500"
+                  className="p-1 w-9 bg-tertiary rounded-l-md"
                   onClick={() => handleSuccessfulShots(index)}
                   placeholder={undefined}
                 >
                   O
                 </Button>
                 <Button
-                  className="p-1 w-8 bg-gray-800"
+                  className="p-1 w-9 bg-primary rounded-r-md"
                   onClick={() => handleCloseButton(index)}
                   placeholder={undefined}
                 >
